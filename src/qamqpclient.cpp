@@ -527,11 +527,21 @@ void QAmqpClientPrivate::startOk()
     QByteArray arguments;
     QDataStream stream(&arguments, QIODevice::WriteOnly);
 
+    QAmqpTable propertiesGroup;
+    propertiesGroup["version"] = QString(QAMQP_VERSION);
+    propertiesGroup["platform"] = QString("Qt %1").arg(qVersion());
+    propertiesGroup["product"] = QString("QAMQP");
+
+    QAmqpTable clientProperties;
+    clientProperties["customProperties"] = propertiesGroup;
+    /*
+     * //alterado aqui
     QAmqpTable clientProperties;
     clientProperties["version"] = QString(QAMQP_VERSION);
     clientProperties["platform"] = QString("Qt %1").arg(qVersion());
     clientProperties["product"] = QString("QAMQP");
     clientProperties.unite(customProperties);
+    */
     stream << clientProperties;
 
     authenticator->write(stream);
@@ -906,7 +916,7 @@ void QAmqpClient::setSslConfiguration(const QSslConfiguration &config)
 
 QString QAmqpClient::gitVersion()
 {
-    return QString(GIT_VERSION);
+    return QString("GIT_VERSION");
 }
 
 void QAmqpClient::ignoreSslErrors(const QList<QSslError> &errors)
