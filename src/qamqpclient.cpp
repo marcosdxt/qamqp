@@ -62,10 +62,10 @@ void QAmqpClientPrivate::initSocket()
     QObject::connect(socket, SIGNAL(connected()), q, SLOT(_q_socketConnected()));
     QObject::connect(socket, SIGNAL(disconnected()), q, SLOT(_q_socketDisconnected()));
     QObject::connect(socket, SIGNAL(readyRead()), q, SLOT(_q_readyRead()));
-    QObject::connect(socket, SIGNAL(error(QAbstractSocket::SocketError)),
+    /*QObject::connect(socket, SIGNAL(error(QAbstractSocket::SocketError)),
                           q, SLOT(_q_socketError(QAbstractSocket::SocketError)));
     QObject::connect(socket, SIGNAL(error(QAbstractSocket::SocketError)),
-                          q, SIGNAL(socketError(QAbstractSocket::SocketError)));
+                          q, SIGNAL(socketError(QAbstractSocket::SocketError)));*/
     QObject::connect(socket, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
                           q, SIGNAL(socketStateChanged(QAbstractSocket::SocketState)));
     QObject::connect(socket, SIGNAL(sslErrors(QList<QSslError>)),

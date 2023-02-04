@@ -1,14 +1,4 @@
-QAMQP_VERSION = 0.6.0
-DEFINES += GIT_VERSION="1.0.0"
-
-isEmpty(QAMQP_LIBRARY_TYPE) {
-    QAMQP_LIBRARY_TYPE = static
-}
-
 QT += network
-
-QAMQP_INCLUDEPATH = $${PWD}/src
-#QAMQP_LIBS = -lqamqp
 
 SOURCES += \
         $$PWD/src/qamqpauthenticator.cpp \
@@ -39,7 +29,7 @@ HEADERS += \
         $$PWD/src/qamqpqueue_p.h \
 
 INCLUDEPATH += \
-        $$PWD
+        $$PWD/src
 
 
 #QAMQP_VERSION = 0.5.0
