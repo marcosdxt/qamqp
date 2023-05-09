@@ -245,8 +245,11 @@ void QAmqpClientPrivate::_q_socketError(QAbstractSocket::SocketError error)
 void QAmqpClientPrivate::_q_readyRead()
 {
     Q_Q(QAmqpClient);
+
+    Q_EMIT q->heartbeat();
     
     while (socket->bytesAvailable() >= QAmqpFrame::HEADER_SIZE) {
+
         unsigned char headerData[QAmqpFrame::HEADER_SIZE];
         socket->peek((char*)headerData, QAmqpFrame::HEADER_SIZE);
         const quint32 payloadSize = qFromBigEndian<quint32>(headerData + 3);
